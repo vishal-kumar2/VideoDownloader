@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Downloader</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="logo-container">
+    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="logo">
+    <h2>VideoDownloader</h2>
+  </div>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#how-it-works">How it Works</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Section -->
+  <div class="main">
+    <!-- Input Card -->
+    
+    <div class="card">
+      
+      <h1>Download Your Videos</h1>
+      <p>Paste your video link below and click download to get started.</p>
+      <input type="text" id="videoURL" placeholder="Paste video link here...">
+      <select id="quality">
+        <option value="best">Best Available</option>
+        <option value="1080">1080p</option>
+        <option value="720">720p</option>
+        <option value="480">480p</option>
+        <option value="360">360p</option>
+      </select>
+
+      <button onclick="downloadVideo()">Download</button>
+      <div class="message" id="message"></div>
+    </div>
+    
+
+    <!-- How it Works -->
+    <div class="steps" id="how-it-works">
+      <h2>How it Works</h2>
+      <div class="step-container">
+        <div class="step">
+          <h3>1. Paste</h3>
+          <p>Copy the video link and paste it in the input box.</p>
+        </div>
+        <div class="step">
+          <h3>2. Process</h3>
+          <p>Our system fetches and prepares your video.</p>
+        </div>
+        <div class="step">
+          <h3>3. Download</h3>
+          <p>Click the download button and enjoy your video offline.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- About Section -->
+    <div class="about" id="about">
+      <h2>About</h2>
+      <p>
+        VideoDownloader is a simple and powerful tool that helps you download videos 
+        from your favorite platforms in the best available quality.  
+        Our goal is to make downloading videos fast, easy, and accessible for everyone.
+      </p>
+      <p>
+        Whether you want to save tutorials, lectures, or entertainment videos,  
+        VideoDownloader gives you full control over quality and format.
+      </p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-left">
+      <h3>VideoDownloader</h3>
+      <p>Download your favorite videos with ease and in the best quality available.</p>
+    </div>
+
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#how-it-works">How it Works</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-contact">
+      <h4>Contact</h4>
+      <p>Email: legendvishal13@gmail.com</p>
+      <p>Github:https://github.com/vishal-kumar2</p>
+      <p>linkedin:https://www.linkedin.com/in/vishal-kumar-gupta-012b65216/</p>
+      
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 VideoDownloader. All rights reserved.</p>
+    <p>Made with ❤️ by <a href="#">Vishal</a></p>
+  </div>
+</footer>
+
+
+  <!-- JavaScript -->
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
