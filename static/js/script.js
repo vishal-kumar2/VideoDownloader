@@ -17,15 +17,22 @@ function downloadVideo() {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ url, quality })
   })
-  .then(response => {
-    if (!response.ok) throw new Error("Failed to download");
+  .then(async response => {
+    if (!response.ok) {
+      const errData = await response.json();
+      throw new Error(errData.error || "Failed to download");
+    }
     return response.blob();
   })
   .then(blob => {
+    // Create a unique filename using timestamp
+    const filename = `video_${Date.now()}.mp4`;
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
-    link.download = "video.mp4";
+    link.download = filename;
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
     message.innerText = "✅ Video downloaded successfully!";
   })
   .catch(err => {

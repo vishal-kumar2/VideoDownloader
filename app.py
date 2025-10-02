@@ -1,12 +1,13 @@
-from flask import Flask, request, send_file, jsonify, render_template
+from flask import Flask, request, send_file, jsonify, render_template, after_this_request
 import yt_dlp
 import uuid
 import os
-from flask import after_this_request
+
 app = Flask(__name__)
 
-DOWNLOAD_FOLDER=os.path.join(os.getcwd(),"downloads")
-os.makedirs(DOWNLOAD_FOLDER,exist_ok=True)
+# Use /tmp folder for writable temp files
+DOWNLOAD_FOLDER = "/tmp"
+os.makedirs(DOWNLOAD_FOLDER, exist_ok=True)
 
 @app.route('/')
 def index():
@@ -41,14 +42,14 @@ def download_video():
             for f in formats:
                 if f.get("height") and f["height"] <= q and f.get("acodec") != "none":
                     selected = f["format_id"]
-            fmt = selected if selected else "best"   # fallback
+            fmt = selected if selected else "best"  # fallback
 
         # Step 3: Download
         ydl_opts = {
             'format': fmt,
             'outtmpl': filepath,
             'noplaylist': True,
-            'merge_output_format': 'mp4'   # ensures audio+video merge
+            'merge_output_format': 'mp4'  # ensures audio+video merge
         }
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -67,7 +68,6 @@ def download_video():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
 
 
 if __name__ == "__main__":
